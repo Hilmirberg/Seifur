@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import useSWR from 'swr'
-import { useTranslations } from 'next-intl'
 import type { Camera } from '@/lib/types'
 import CameraModal from '@/components/cameras/CameraModal'
 
@@ -11,12 +10,11 @@ const fetcher = (url: string) => fetch(url).then((r) => r.json())
 const REGIONS = ['All regions', 'Southwest', 'South', 'East', 'North', 'Westfjords', 'West', 'Highlands', 'Other']
 
 export default function CamerasPage() {
-  const t = useTranslations('cameras')
   const [region, setRegion] = useState('All regions')
   const [selected, setSelected] = useState<Camera | null>(null)
 
   const { data: cameras = [], isLoading } = useSWR<Camera[]>('/api/cameras', fetcher, {
-    refreshInterval: 60_000, // refresh every 60s
+    refreshInterval: 60_000,
   })
 
   const filtered = region === 'All regions' ? cameras : cameras.filter((c) => c.region === region)
@@ -25,8 +23,8 @@ export default function CamerasPage() {
     <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
-          <p className="text-xs text-gray-400 mt-0.5">{t('refresh')}</p>
+          <h1 className="text-2xl font-bold text-gray-900">Road Cameras</h1>
+          <p className="text-xs text-gray-400 mt-0.5">Refreshes every 60s</p>
         </div>
         <select
           value={region}
@@ -38,7 +36,7 @@ export default function CamerasPage() {
       </div>
 
       {isLoading ? (
-        <div className="text-sm text-gray-400 animate-pulse">{t('loading')}</div>
+        <div className="text-sm text-gray-400 animate-pulse">Loading cameras…</div>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
           {filtered.map((cam) => (

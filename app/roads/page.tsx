@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import useSWR from 'swr'
-import { useTranslations } from 'next-intl'
 import type { RoadCondition } from '@/lib/types'
 import { statusBadgeClass } from '@/lib/road-condition-colors'
 import type { RoadStatus } from '@/lib/types'
@@ -12,8 +11,6 @@ const fetcher = (url: string) => fetch(url).then((r) => r.json())
 const REGIONS = ['All regions', 'Southwest', 'South', 'East', 'North', 'Westfjords', 'West', 'Highlands', 'Other']
 
 export default function RoadsPage() {
-  const t = useTranslations('roads')
-  const tStatus = useTranslations('status')
   const [region, setRegion] = useState('All regions')
   const [showFroads, setShowFroads] = useState(false)
 
@@ -34,7 +31,7 @@ export default function RoadsPage() {
     <div className="max-w-5xl mx-auto px-4 py-6 space-y-6">
       <div className="flex items-start justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Road Conditions</h1>
           {roads.length > 0 && (
             <p className="text-sm text-gray-500 mt-1">
               {roads.length} sections — {closedCount > 0 && <span className="text-red-600 font-medium">{closedCount} closed</span>}
@@ -65,16 +62,16 @@ export default function RoadsPage() {
       </div>
 
       {isLoading ? (
-        <div className="text-sm text-gray-400 animate-pulse">{t('loading')}</div>
+        <div className="text-sm text-gray-400 animate-pulse">Loading road conditions…</div>
       ) : (
         <div className="bg-white rounded-xl border shadow-sm overflow-hidden">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wide">{t('road')}</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wide">{t('section')}</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wide">{t('status')}</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wide">{t('road')}</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wide">Road</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wide">Section</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wide">Status</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wide">Region</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
@@ -94,7 +91,7 @@ export default function RoadsPage() {
                     <td className="px-4 py-3 text-sm text-gray-600 max-w-xs truncate">{road.description}</td>
                     <td className="px-4 py-3">
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusBadgeClass(road.conditionLabel as RoadStatus)}`}>
-                        {tStatus(road.conditionLabel as keyof ReturnType<typeof tStatus>)}
+                        {road.conditionLabel}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-xs text-gray-400">{road.region}</td>

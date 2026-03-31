@@ -3,7 +3,6 @@
 import dynamic from 'next/dynamic'
 import { useState, useCallback, useEffect, useRef } from 'react'
 import useSWR from 'swr'
-import { useTranslations } from 'next-intl'
 import WaypointInput from '@/components/ferdaLag/WaypointInput'
 import RouteConditionCard from '@/components/ferdaLag/RouteConditionCard'
 import type { Waypoint, Camera, RoadCondition, FuelStation, SavedRoute } from '@/lib/types'
@@ -21,8 +20,6 @@ interface RouteResult {
 }
 
 export default function FerdaLagPage() {
-  const t = useTranslations('ferdaLag')
-
   const [from, setFrom] = useState<Waypoint | null>(null)
   const [to, setTo] = useState<Waypoint | null>(null)
   const [stops, setStops] = useState<(Waypoint | null)[]>([])
@@ -131,12 +128,12 @@ export default function FerdaLagPage() {
         {/* Sidebar */}
         <div className="md:w-96 md:overflow-y-auto md:border-r border-gray-200 bg-white">
           <div className="p-4 space-y-4">
-            <h1 className="text-xl font-bold text-gray-900">{t('title')}</h1>
+            <h1 className="text-xl font-bold text-gray-900">Ferðalag — Plan Your Journey</h1>
 
             {/* Saved routes dropdown */}
             {savedRoutes.length > 0 && (
               <div>
-                <label className="block text-xs font-medium text-gray-500 mb-1">{t('savedRoutes')}</label>
+                <label className="block text-xs font-medium text-gray-500 mb-1">Saved routes</label>
                 <div className="space-y-1">
                   {savedRoutes.map((sr) => (
                     <div key={sr.id} className="flex items-center gap-2 bg-gray-50 rounded-lg px-3 py-2">
@@ -159,7 +156,7 @@ export default function FerdaLagPage() {
 
             {/* From */}
             <WaypointInput
-              label={t('from')}
+              label="From"
               value={from}
               onChange={setFrom}
               showGps
@@ -193,11 +190,11 @@ export default function FerdaLagPage() {
               onClick={() => setStops((prev) => [...prev, null])}
               className="w-full py-2 border-2 border-dashed border-gray-300 rounded-lg text-sm text-gray-500 hover:border-blue-400 hover:text-blue-500 transition-colors"
             >
-              + {t('addStop')}
+              + Add stop
             </button>
 
             {/* To */}
-            <WaypointInput label={t('to')} value={to} onChange={setTo} />
+            <WaypointInput label="To" value={to} onChange={setTo} />
 
             {/* Plan button */}
             <button
@@ -210,18 +207,18 @@ export default function FerdaLagPage() {
                   <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                   Planning…
                 </span>
-              ) : t('planRoute')}
+              ) : 'Plan route'}
             </button>
 
             {/* Route summary */}
             {route && (
               <div className="bg-blue-50 rounded-lg px-4 py-3 text-sm space-y-1">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">{t('distance')}</span>
+                  <span className="text-gray-600">Distance</span>
                   <span className="font-semibold">{route.distanceKm} km</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">{t('duration')}</span>
+                  <span className="text-gray-600">Duration</span>
                   <span className="font-semibold">
                     {Math.floor(route.durationMin / 60)}h {route.durationMin % 60}m
                   </span>
@@ -236,7 +233,7 @@ export default function FerdaLagPage() {
                   type="text"
                   value={routeName}
                   onChange={(e) => setRouteName(e.target.value)}
-                  placeholder={t('routeName')}
+                  placeholder="Route name"
                   className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   onKeyDown={(e) => { if (e.key === 'Enter') saveRoute() }}
                 />
@@ -245,7 +242,7 @@ export default function FerdaLagPage() {
                   disabled={!routeName.trim()}
                   className="px-3 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 disabled:opacity-50"
                 >
-                  {t('saveRoute')}
+                  Save route
                 </button>
               </div>
             )}
@@ -254,7 +251,7 @@ export default function FerdaLagPage() {
           {/* Conditions along route */}
           {route && allWaypoints.length > 0 && (
             <div className="p-4 pt-0 space-y-3">
-              <h2 className="font-semibold text-gray-700 text-sm">{t('conditions')}</h2>
+              <h2 className="font-semibold text-gray-700 text-sm">Conditions along route</h2>
               {allWaypoints.map((wp, i) => (
                 <RouteConditionCard
                   key={i}
@@ -269,7 +266,7 @@ export default function FerdaLagPage() {
           {/* Fuel stations */}
           {fuelStations.length > 0 && (
             <div className="p-4 pt-0">
-              <h2 className="font-semibold text-gray-700 text-sm mb-2">{t('fuel')}</h2>
+              <h2 className="font-semibold text-gray-700 text-sm mb-2">Fuel stations</h2>
               <div className="space-y-1">
                 {fuelStations.slice(0, 8).map((f) => (
                   <div key={f.id} className="flex justify-between text-sm bg-gray-50 rounded-lg px-3 py-2">
@@ -313,7 +310,7 @@ export default function FerdaLagPage() {
       {/* No route placeholder */}
       {!route && !planning && (
         <div className="md:hidden p-6 text-center text-gray-400 text-sm">
-          {t('noRoute')}
+          Enter origin and destination to plan your route
         </div>
       )}
     </div>

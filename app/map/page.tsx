@@ -3,7 +3,6 @@
 import dynamic from 'next/dynamic'
 import useSWR from 'swr'
 import { useState } from 'react'
-import { useTranslations } from 'next-intl'
 import CameraModal from '@/components/cameras/CameraModal'
 import type { RoadCondition, Camera, StationObservation, AvalancheWarning } from '@/lib/types'
 import { ICELAND_LOCATIONS } from '@/lib/iceland-locations'
@@ -13,7 +12,6 @@ const IcelandMap = dynamic(() => import('@/components/map/IcelandMap'), { ssr: f
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
 export default function MapPage() {
-  const t = useTranslations('map')
   const [selectedCamera, setSelectedCamera] = useState<Camera | null>(null)
 
   const { data: roads = [] } = useSWR<RoadCondition[]>('/api/roads', fetcher, { refreshInterval: 900_000 })
@@ -63,7 +61,7 @@ export default function MapPage() {
       {/* Loading hint */}
       {!roads.length && (
         <div className="absolute bottom-20 md:bottom-4 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow text-sm text-gray-600 z-[400]">
-          {t('loadingRoads')}
+          Loading road conditions…
         </div>
       )}
 

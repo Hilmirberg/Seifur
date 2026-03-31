@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import useSWR from 'swr'
-import { useTranslations } from 'next-intl'
 import { ICELAND_LOCATIONS } from '@/lib/iceland-locations'
 import type { WeatherForecast, StationObservation, SunTimes } from '@/lib/types'
 
@@ -32,7 +31,6 @@ function wmoEmoji(code: number): string {
 }
 
 export default function WeatherPage() {
-  const t = useTranslations('weather')
   const [selectedIdx, setSelectedIdx] = useState(0)
   const loc = ICELAND_LOCATIONS[selectedIdx]
 
@@ -60,7 +58,7 @@ export default function WeatherPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-6 space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
-        <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
+        <h1 className="text-2xl font-bold text-gray-900">Weather</h1>
         <select
           className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={selectedIdx}
@@ -75,20 +73,20 @@ export default function WeatherPage() {
       {/* Current conditions */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-white rounded-xl border p-4 shadow-sm">
-          <div className="text-xs text-gray-400 uppercase tracking-wide mb-1">{t('temp')}</div>
+          <div className="text-xs text-gray-400 uppercase tracking-wide mb-1">Temperature</div>
           <div className="text-3xl font-bold text-gray-900">
             {station?.temp != null ? `${station.temp}°C` : '—'}
           </div>
         </div>
         <div className="bg-white rounded-xl border p-4 shadow-sm">
-          <div className="text-xs text-gray-400 uppercase tracking-wide mb-1">{t('wind')}</div>
+          <div className="text-xs text-gray-400 uppercase tracking-wide mb-1">Wind</div>
           <div className="text-3xl font-bold text-gray-900">
             {station?.windSpeed != null ? `${station.windSpeed}` : '—'}
             {station?.windSpeed != null && <span className="text-lg font-normal text-gray-500"> m/s</span>}
           </div>
         </div>
         <div className="bg-white rounded-xl border p-4 shadow-sm">
-          <div className="text-xs text-gray-400 uppercase tracking-wide mb-1">{t('pressure')}</div>
+          <div className="text-xs text-gray-400 uppercase tracking-wide mb-1">Pressure</div>
           <div className="text-2xl font-bold text-gray-900">
             {station?.pressure != null ? `${station.pressure}` : '—'}
             {station?.pressure != null && <span className="text-sm font-normal text-gray-500"> hPa</span>}
@@ -108,9 +106,9 @@ export default function WeatherPage() {
 
       {/* 7-day forecast */}
       <div>
-        <h2 className="font-semibold text-gray-700 mb-3">{t('forecast')}</h2>
+        <h2 className="font-semibold text-gray-700 mb-3">7-day forecast</h2>
         {forecastLoading ? (
-          <div className="text-sm text-gray-400 animate-pulse">{t('loading')}</div>
+          <div className="text-sm text-gray-400 animate-pulse">Loading weather…</div>
         ) : daily ? (
           <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2">
             {daily.time.map((dateStr, i) => {

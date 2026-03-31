@@ -1,7 +1,6 @@
 'use client'
 
 import useSWR from 'swr'
-import { useTranslations } from 'next-intl'
 import type { AvalancheWarning } from '@/lib/types'
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
@@ -11,8 +10,6 @@ const LEVEL_TEXT_COLORS = ['', 'text-green-800', 'text-yellow-800', 'text-orange
 const LEVEL_LABELS = ['', 'Low', 'Moderate', 'Considerable', 'High', 'Very High']
 
 export default function AvalanchePage() {
-  const t = useTranslations('avalanche')
-
   const { data: warnings = [], isLoading } = useSWR<AvalancheWarning[]>('/api/avalanche', fetcher, {
     refreshInterval: 3600_000,
   })
@@ -20,7 +17,7 @@ export default function AvalanchePage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-6 space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
+        <h1 className="text-2xl font-bold text-gray-900">Avalanche Warnings</h1>
         <p className="text-sm text-gray-500 mt-1">
           Source:{' '}
           <a href="https://en.vedur.is/avalanches/forecast/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
@@ -30,11 +27,11 @@ export default function AvalanchePage() {
       </div>
 
       {isLoading ? (
-        <div className="text-sm text-gray-400 animate-pulse">{t('loading')}</div>
+        <div className="text-sm text-gray-400 animate-pulse">Loading avalanche warnings…</div>
       ) : warnings.length === 0 ? (
         <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
           <div className="text-3xl mb-2">✅</div>
-          <p className="text-green-800 font-medium">{t('noWarnings')}</p>
+          <p className="text-green-800 font-medium">No active avalanche warnings</p>
           <p className="text-sm text-green-600 mt-1">Check vedur.is for full details</p>
         </div>
       ) : (
@@ -48,11 +45,11 @@ export default function AvalanchePage() {
               >
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <div className="text-xs uppercase tracking-wide opacity-70 mb-1">{t('region')}</div>
+                    <div className="text-xs uppercase tracking-wide opacity-70 mb-1">Region</div>
                     <h2 className="text-lg font-bold">{w.region}</h2>
                   </div>
                   <div className="text-right flex-shrink-0">
-                    <div className="text-xs uppercase tracking-wide opacity-70 mb-1">{t('level')}</div>
+                    <div className="text-xs uppercase tracking-wide opacity-70 mb-1">Level</div>
                     <div className="text-3xl font-black">{lvl}</div>
                     <div className="text-xs font-medium">{LEVEL_LABELS[lvl]}</div>
                   </div>
@@ -61,7 +58,7 @@ export default function AvalanchePage() {
                   <p className="text-sm mt-3 opacity-90">{w.description}</p>
                 )}
                 {w.validUntil && (
-                  <p className="text-xs mt-2 opacity-60">{t('validUntil')}: {w.validUntil}</p>
+                  <p className="text-xs mt-2 opacity-60">Valid until: {w.validUntil}</p>
                 )}
               </div>
             )
@@ -69,7 +66,6 @@ export default function AvalanchePage() {
         </div>
       )}
 
-      {/* Link to full vedur.is forecast */}
       <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm">
         <p className="font-medium text-blue-900 mb-1">Full avalanche forecast</p>
         <p className="text-blue-700">
