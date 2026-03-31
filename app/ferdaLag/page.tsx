@@ -32,8 +32,10 @@ export default function FerdaLagPage() {
   const [fuelStations, setFuelStations] = useState<FuelStation[]>([])
   const watchIdRef = useRef<number | null>(null)
 
-  const { data: cameras = [] } = useSWR<Camera[]>('/api/cameras', fetcher)
-  const { data: roads = [] } = useSWR<RoadCondition[]>('/api/roads', fetcher)
+  const { data: camerasData } = useSWR<Camera[]>('/api/cameras', fetcher)
+  const { data: roadsData } = useSWR<RoadCondition[]>('/api/roads', fetcher)
+  const cameras = Array.isArray(camerasData) ? camerasData : []
+  const roads = Array.isArray(roadsData) ? roadsData : []
 
   // Load saved routes on mount
   useEffect(() => {

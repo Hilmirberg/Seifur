@@ -14,9 +14,10 @@ export default function RoadsPage() {
   const [region, setRegion] = useState('All regions')
   const [showFroads, setShowFroads] = useState(false)
 
-  const { data: roads = [], isLoading } = useSWR<RoadCondition[]>('/api/roads', fetcher, {
+  const { data: roadsData, isLoading } = useSWR<RoadCondition[]>('/api/roads', fetcher, {
     refreshInterval: 900_000,
   })
+  const roads = Array.isArray(roadsData) ? roadsData : []
 
   const filtered = roads.filter((r) => {
     if (region !== 'All regions' && r.region !== region) return false

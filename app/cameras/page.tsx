@@ -13,9 +13,10 @@ export default function CamerasPage() {
   const [region, setRegion] = useState('All regions')
   const [selected, setSelected] = useState<Camera | null>(null)
 
-  const { data: cameras = [], isLoading } = useSWR<Camera[]>('/api/cameras', fetcher, {
+  const { data: camerasData, isLoading } = useSWR<Camera[]>('/api/cameras', fetcher, {
     refreshInterval: 60_000,
   })
+  const cameras = Array.isArray(camerasData) ? camerasData : []
 
   const filtered = region === 'All regions' ? cameras : cameras.filter((c) => c.region === region)
 

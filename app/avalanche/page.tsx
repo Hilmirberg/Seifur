@@ -10,9 +10,10 @@ const LEVEL_TEXT_COLORS = ['', 'text-green-800', 'text-yellow-800', 'text-orange
 const LEVEL_LABELS = ['', 'Low', 'Moderate', 'Considerable', 'High', 'Very High']
 
 export default function AvalanchePage() {
-  const { data: warnings = [], isLoading } = useSWR<AvalancheWarning[]>('/api/avalanche', fetcher, {
+  const { data: warningsData, isLoading } = useSWR<AvalancheWarning[]>('/api/avalanche', fetcher, {
     refreshInterval: 3600_000,
   })
+  const warnings = Array.isArray(warningsData) ? warningsData : []
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-6 space-y-6">

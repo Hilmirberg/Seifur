@@ -14,17 +14,22 @@ const fetcher = (url: string) => fetch(url).then((r) => r.json())
 export default function MapPage() {
   const [selectedCamera, setSelectedCamera] = useState<Camera | null>(null)
 
-  const { data: roads = [] } = useSWR<RoadCondition[]>('/api/roads', fetcher, { refreshInterval: 900_000 })
-  const { data: cameras = [] } = useSWR<Camera[]>('/api/cameras', fetcher, { refreshInterval: 1800_000 })
-  const { data: avalanche = [] } = useSWR<AvalancheWarning[]>('/api/avalanche', fetcher, { refreshInterval: 3600_000 })
+  const { data: roadsData } = useSWR<RoadCondition[]>('/api/roads', fetcher, { refreshInterval: 900_000 })
+  const { data: camerasData } = useSWR<Camera[]>('/api/cameras', fetcher, { refreshInterval: 1800_000 })
+  const { data: avalancheData } = useSWR<AvalancheWarning[]>('/api/avalanche', fetcher, { refreshInterval: 3600_000 })
+
+  const roads = Array.isArray(roadsData) ? roadsData : []
+  const cameras = Array.isArray(camerasData) ? camerasData : []
+  const avalanche = Array.isArray(avalancheData) ? avalancheData : []
 
   // Fetch observations for a handful of key stations
-  const stationIds = ICELAND_LOCATIONS.filter((l) => l.stationId).map((l) => l.stationId).join(',')
-  const { data: observations = [] } = useSWR<StationObservation[]>(
+  const stationIds = ICELAND_LOCATIONS.filter((l) => l.stationId).map((l) => l.stationId as string).join(',')
+  const { data: obsData } = useSWR<StationObservation[]>(
     `/api/weather/observations?stations=${stationIds}`,
     fetcher,
     { refreshInterval: 3600_000 }
   )
+  const observations = Array.isArray(obsData) ? obsData : []
 
   return (
     <div className="relative">
