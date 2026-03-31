@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "map": "Map",
+    "ferdaLag": "Journey",
+    "weather": "Weather",
+    "roads": "Roads",
+    "cameras": "Cameras",
+    "avalanche": "Avalanche"
+  },
+  "map": {
+    "title": "Iceland Road & Weather Map",
+    "loadingRoads": "Loading road conditions…",
+    "loadingWeather": "Loading weather…",
+    "clickCamera": "Click a camera pin to view feed"
+  },
+  "ferdaLag": {
+    "title": "Ferðalag — Plan Your Journey",
+    "from": "From",
+    "to": "To",
+    "addStop": "Add stop",
+    "planRoute": "Plan route",
+    "gps": "Use my location",
+    "saveRoute": "Save route",
+    "savedRoutes": "Saved routes",
+    "routeName": "Route name",
+    "distance": "Distance",
+    "duration": "Duration",
+    "conditions": "Conditions along route",
+    "cameras": "Nearby cameras",
+    "fuel": "Fuel stations",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset",
+    "dayLength": "Day length",
+    "alertTitle": "Road condition change on saved route",
+    "noRoute": "Enter origin and destination to plan your route",
+    "searching": "Searching…",
+    "froad": "F-road",
+    "froadWarning": "4WD required",
+    "froadClosed": "F-road closed",
+    "froadOpen": "F-road open"
+  },
+  "weather": {
+    "title": "Weather",
+    "selectLocation": "Select location",
+    "current": "Current conditions",
+    "forecast": "7-day forecast",
+    "temp": "Temperature",
+    "wind": "Wind",
+    "precipitation": "Precipitation",
+    "humidity": "Humidity",
+    "pressure": "Pressure",
+    "visibility": "Visibility",
+    "snowDepth": "Snow depth",
+    "loading": "Loading weather…"
+  },
+  "roads": {
+    "title": "Road Conditions",
+    "allRegions": "All regions",
+    "status": "Status",
+    "road": "Road",
+    "section": "Section",
+    "updated": "Updated",
+    "froad": "F-road",
+    "loading": "Loading road conditions…"
+  },
+  "cameras": {
+    "title": "Road Cameras",
+    "allRegions": "All regions",
+    "refresh": "Refreshes every 60s",
+    "loading": "Loading cameras…",
+    "fullscreen": "View full size"
+  },
+  "avalanche": {
+    "title": "Avalanche Warnings",
+    "level": "Level",
+    "region": "Region",
+    "validUntil": "Valid until",
+    "loading": "Loading avalanche warnings…",
+    "noWarnings": "No active avalanche warnings"
+  },
+  "common": {
+    "error": "Failed to load data",
+    "retry": "Retry",
+    "lastUpdated": "Last updated",
+    "offline": "You are offline — showing last cached data",
+    "km": "km",
+    "ms": "m/s",
+    "celsius": "°C"
+  },
+  "status": {
+    "open": "Open",
+    "slippery": "Slippery",
+    "difficult": "Difficult",
+    "closed": "Closed",
+    "snowCovered": "Snow-covered",
+    "unknown": "Unknown"
+  }
+}

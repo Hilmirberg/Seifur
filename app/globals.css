@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Leaflet CSS */
+@import 'leaflet/dist/leaflet.css';
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Full-height map container */
+.map-container {
+  height: calc(100vh - 56px);
+}
+
+@media (min-width: 768px) {
+  .map-container {
+    height: calc(100vh - 64px);
+  }
+}
+
+/* Road status badge colours */
+.status-open    { @apply bg-green-100 text-green-800; }
+.status-slippery { @apply bg-yellow-100 text-yellow-800; }
+.status-difficult { @apply bg-orange-100 text-orange-800; }
+.status-closed  { @apply bg-red-100 text-red-800; }
+.status-unknown { @apply bg-gray-100 text-gray-800; }

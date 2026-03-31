@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "map": "Kort",
+    "ferdaLag": "Ferðalag",
+    "weather": "Veður",
+    "roads": "Vegir",
+    "cameras": "Myndavelar",
+    "avalanche": "Snjóflóð"
+  },
+  "map": {
+    "title": "Vegasamgöngur & veðurkort",
+    "loadingRoads": "Hleður vegaástandi…",
+    "loadingWeather": "Hleður veðri…",
+    "clickCamera": "Smelltu á myndavélarmerkið til að skoða"
+  },
+  "ferdaLag": {
+    "title": "Ferðalag — Skipuleggðu ferðina",
+    "from": "Frá",
+    "to": "Til",
+    "addStop": "Bæta við stöð",
+    "planRoute": "Skipuleggja leið",
+    "gps": "Nota staðsetningu mína",
+    "saveRoute": "Vista leið",
+    "savedRoutes": "Vistaðar leiðir",
+    "routeName": "Heiti leiðar",
+    "distance": "Fjarlægð",
+    "duration": "Tími",
+    "conditions": "Aðstæður á leiðinni",
+    "cameras": "Nálægar myndavelar",
+    "fuel": "Bensínstöðvar",
+    "sunrise": "Sólarupprás",
+    "sunset": "Sólsetur",
+    "dayLength": "Dagslengd",
+    "alertTitle": "Vegaástand breyttist á vistaðri leið",
+    "noRoute": "Settu inn upphaf og áfangastað til að skipuleggja leið",
+    "searching": "Leitar…",
+    "froad": "F-vegur",
+    "froadWarning": "Krefst jeppa",
+    "froadClosed": "F-vegur lokaður",
+    "froadOpen": "F-vegur opinn"
+  },
+  "weather": {
+    "title": "Veður",
+    "selectLocation": "Veldu stað",
+    "current": "Núverandi veður",
+    "forecast": "7 daga spá",
+    "temp": "Hiti",
+    "wind": "Vindur",
+    "precipitation": "Úrkoma",
+    "humidity": "Raki",
+    "pressure": "Loftþrýstingur",
+    "visibility": "Skyggni",
+    "snowDepth": "Snjódýpt",
+    "loading": "Hleður veðri…"
+  },
+  "roads": {
+    "title": "Vegaástand",
+    "allRegions": "Allar svæði",
+    "status": "Ástand",
+    "road": "Vegur",
+    "section": "Hluti",
+    "updated": "Uppfært",
+    "froad": "F-vegur",
+    "loading": "Hleður vegaástandi…"
+  },
+  "cameras": {
+    "title": "Vegamyndavelar",
+    "allRegions": "Allar svæði",
+    "refresh": "Uppfærist á 60 sekúndna fresti",
+    "loading": "Hleður myndavelar…",
+    "fullscreen": "Skoða í fullri stærð"
+  },
+  "avalanche": {
+    "title": "Snjóflóðaviðvaranir",
+    "level": "Stig",
+    "region": "Svæði",
+    "validUntil": "Gildir til",
+    "loading": "Hleður snjóflóðaviðvaranir…",
+    "noWarnings": "Engar virkar snjóflóðaviðvaranir"
+  },
+  "common": {
+    "error": "Ekki tókst að sækja gögn",
+    "retry": "Reyna aftur",
+    "lastUpdated": "Síðast uppfært",
+    "offline": "Þú ert án nettengingar — sýnir síðustu vistuðu gögn",
+    "km": "km",
+    "ms": "m/s",
+    "celsius": "°C"
+  },
+  "status": {
+    "open": "Opið",
+    "slippery": "Sleipilegt",
+    "difficult": "Erfitt",
+    "closed": "Lokað",
+    "snowCovered": "Snjóþakið",
+    "unknown": "Óþekkt"
+  }
+}
